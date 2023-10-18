@@ -1,5 +1,5 @@
 import logo from "../../assets/logo.svg";
-import { IoIosArrowDown, IoIosPhonePortrait } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { RiSendPlaneFill } from "react-icons/ri";
 const Footer = () => {
     return (
