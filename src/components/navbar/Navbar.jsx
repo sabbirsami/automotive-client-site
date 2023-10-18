@@ -18,7 +18,7 @@ const Navbar = () => {
                             </li>
                             <li>
                                 <NavLink className=" p-4" to={"/add-car"}>
-                                    Add Product
+                                    Add Car
                                 </NavLink>
                             </li>
                             <li>

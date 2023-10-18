@@ -28,15 +28,15 @@ const AddCar = () => {
         };
         console.log(car);
 
-        // fetch("http://localhost:5000/Cars", {
-        //     method: "POST",
-        //     headers: {
-        //         "content-type": "application/json",
-        //     },
-        //     body: JSON.stringify(car),
-        // })
-        //     .then((res) => res.json())
-        //     .catch((result) => console.log(result));
+        fetch("http://localhost:5000/cars", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(car),
+        })
+            .then((res) => res.json())
+            .catch((result) => console.log(result));
     };
     return (
         <div className="container-lg">
