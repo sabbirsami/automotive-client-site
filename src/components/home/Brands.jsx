@@ -11,42 +11,42 @@ const Brands = () => {
             <div className="flex items-center justify-center gap-16">
                 <div className="">
                     <img
-                        className="h-48 aspect-[3/2]  object-contain"
+                        className="h-48 aspect-[3/2] brand  object-contain"
                         src={brand1}
                         alt=""
                     />
                 </div>
                 <div className="">
                     <img
-                        className="h-20 aspect-[3/2]  object-contain"
+                        className="h-20 aspect-[3/2] brand  object-contain"
                         src={brand2}
                         alt=""
                     />
                 </div>
                 <div className="">
                     <img
-                        className="h-48 aspect-[3/2]  object-contain"
+                        className="h-48 aspect-[3/2] brand  object-contain"
                         src={brand3}
                         alt=""
                     />
                 </div>
                 <div className="">
                     <img
-                        className="h-16 aspect-[3/2]  object-contain"
+                        className="h-16 aspect-[3/2] brand  object-contain"
                         src={brand5}
                         alt=""
                     />
                 </div>
                 <div className="">
                     <img
-                        className="h-48 aspect-[3/2]  object-contain"
+                        className="h-48 aspect-[3/2] brand  object-contain"
                         src={brand4}
                         alt=""
                     />
                 </div>
                 <div className="">
                     <img
-                        className="h-16 aspect-[3/2]  object-contain"
+                        className="h-16 aspect-[3/2] brand  object-contain"
                         src={brand6}
                         alt=""
                     />

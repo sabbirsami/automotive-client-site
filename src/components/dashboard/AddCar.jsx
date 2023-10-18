@@ -17,7 +17,7 @@ const AddCar = () => {
         const price = e.target.price.value;
         const rating = e.target.rating.value;
         const description = e.target.description.value;
-        const Car = {
+        const car = {
             photoUrl,
             name,
             brand,
@@ -26,16 +26,17 @@ const AddCar = () => {
             description,
             rating,
         };
+        console.log(car);
 
-        fetch("http://localhost:5000/Cars", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(Car),
-        })
-            .then((res) => res.json())
-            .catch((result) => console.log(result));
+        // fetch("http://localhost:5000/Cars", {
+        //     method: "POST",
+        //     headers: {
+        //         "content-type": "application/json",
+        //     },
+        //     body: JSON.stringify(car),
+        // })
+        //     .then((res) => res.json())
+        //     .catch((result) => console.log(result));
     };
     return (
         <div className="container-lg">
@@ -119,8 +120,7 @@ const AddCar = () => {
                                     id="pet-select"
                                 >
                                     <option className="rounded-md" value="">
-                                        Select car brand{" "}
-                                        <span className="text-red-600">*</span>
+                                        Select car brand
                                     </option>
                                     <option
                                         className="rounded-md"
@@ -159,12 +159,6 @@ const AddCar = () => {
                                             className="r rounded-md  text-white/40 w-full py-3 px-4 bg-[#302D3D]"
                                             id="pet-select"
                                         >
-                                            <option
-                                                className="rounded-md"
-                                                value=""
-                                            >
-                                                Select car type
-                                            </option>
                                             <option
                                                 className="rounded-md"
                                                 value="hatchback"
