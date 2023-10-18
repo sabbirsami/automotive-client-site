@@ -2,7 +2,7 @@ import bannerCar from "../../assets/hero-car.png";
 const Banner = () => {
     return (
         <div className=" bg-hero bg-cover bg-no-repeat">
-            <div className="container-lg bg-hero-pattern py-48">
+            <div className="container-lg bg-hero-pattern pt-48 pb-28">
                 <div className="grid grid-cols-5 gap-14 items-center">
                     <div className="pb-8 col-span-2">
                         <h1 className="text-7xl font-bold">
