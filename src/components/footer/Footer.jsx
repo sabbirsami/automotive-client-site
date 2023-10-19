@@ -6,11 +6,11 @@ const Footer = () => {
         <div className=" bg-[#282435]">
             <div className="border-b border-gray-600">
                 <div className="container-lg">
-                    <div className="flex justify-between items-center py-5">
+                    <div className="flex  justify-between items-center py-5">
                         <div className="">
                             <img src={logo} alt="" />
                         </div>
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center md:gap-6 gap-1">
                             <p className="flex items-center gap-2">
                                 Eng <IoIosArrowDown />
                             </p>
@@ -23,7 +23,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="container-lg py-10">
-                <div className="flex justify-between items-start">
+                <div className="flex md:flex-row flex-col justify-between items-start">
                     <div className="">
                         <h2 className="text-2xl font-bold">
                             Subscribe to our newsletter

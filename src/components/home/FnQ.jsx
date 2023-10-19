@@ -3,7 +3,7 @@ const FnQ = () => {
         <div>
             <div className="container-lg pb-16">
                 <h1 className="text-4xl text-center pb-14">FAQs</h1>
-                <div className="grid grid-cols-2 gap-16">
+                <div className="grid lg:grid-cols-2 lg:gap-16">
                     <div className="">
                         <div className="join join-vertical w-full rounded-none">
                             <div className="collapse collapse-arrow join-item rounded-none border-t border-white/40 py-4">

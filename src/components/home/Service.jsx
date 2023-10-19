@@ -4,17 +4,17 @@ const Service = () => {
     return (
         <div>
             <div className="container-lg pt-16 pb-32">
-                <div className="grid grid-cols-6 gap-10">
-                    <div className="col-span-2">
+                <div className="grid lg:grid-cols-6  md:gap-10 gap-5">
+                    <div className="lg:col-span-2">
                         {/* <img src={serviceCar} alt="" /> */}
                         <h6 className="text-xl pb-4">Our Services</h6>
-                        <h1 className="text-5xl">
+                        <h1 className="md:text-5xl text-3xl">
                             feel the best experience with rental deals
                         </h1>
                     </div>
-                    <div className="col-span-1"></div>
-                    <div className="col-span-3">
-                        <div className=" flex gap-8 ">
+                    <div className="lg:col-span-1"></div>
+                    <div className="lg:col-span-3">
+                        <div className=" flex md:gap-8 gap-3 ">
                             <div className="">
                                 <div className="p-5 bg-[#302D3D] shadow-xl  inline-block rounded-md">
                                     <IoPricetags className="text-3xl"></IoPricetags>
@@ -32,7 +32,7 @@ const Service = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className=" flex gap-8 pt-8">
+                        <div className=" flex md:gap-8 gap-3 pt-8">
                             <div className="">
                                 <div className="p-5 bg-[#302D3D] shadow-xl inline-block rounded-md">
                                     <IoSettingsSharp className="text-3xl"></IoSettingsSharp>
@@ -48,7 +48,7 @@ const Service = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className=" flex gap-8 pt-8">
+                        <div className=" flex md:gap-8 gap-3 pt-8">
                             <div className="">
                                 <div className="p-5 bg-[#302D3D] shadow-xl inline-block rounded-md">
                                     <IoFitness className="text-3xl"></IoFitness>
