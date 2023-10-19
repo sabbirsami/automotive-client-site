@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/signIn.svg";
 import { FcGoogle } from "react-icons/fc";
+import { useContext } from "react";
+import { AuthContext } from "./AuthProvider";
 
 const Login = () => {
+    const { signInWithGoogle } = useContext(AuthContext);
+    const handleSignInWithGoogle = () => {
+        signInWithGoogle()
+            .then((result) => console.log(result))
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     return (
         <div>
             <div className="container-lg">
@@ -56,7 +66,7 @@ const Login = () => {
                             </form>
                             <div className="divider">OR</div>
                             <button
-                                // onClick={handleSignInWithGoogle}
+                                onClick={handleSignInWithGoogle}
                                 type="submit"
                                 className="w-full flex items-center justify-center gap-3 py-3 border border-[#FD5631] hover:bg-[#fd3831]/40 rounded-md text-dark"
                             >
