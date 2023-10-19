@@ -17,7 +17,7 @@ const ProductDetails = () => {
     const handleAddToCart = () => {
         const userId = user.uid;
         const userEmail = user.email;
-        const cartData = { name, type, img, brand, userId, userEmail };
+        const cartData = { name, type, img, brand, price, userId, userEmail };
         console.log(cartData);
         fetch("http://localhost:5000/cart", {
             method: "POST",

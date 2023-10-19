@@ -7,6 +7,7 @@ import ProductDetails from "../components/products/ProductDetails";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
 import PrivateRoute from "../components/auth/PrivateRoute";
+import MyCart from "../components/navbar/MyCart";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,15 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
+            },
+            {
+                path: "/cart",
+                element: (
+                    <PrivateRoute>
+                        <MyCart />
+                    </PrivateRoute>
+                ),
+                loader: () => fetch(`http://localhost:5000/cart/`),
             },
             {
                 path: "/login",
