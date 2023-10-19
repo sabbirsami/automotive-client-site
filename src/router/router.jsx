@@ -6,6 +6,7 @@ import Products from "../components/products/Products";
 import ProductDetails from "../components/products/ProductDetails";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
+import PrivateRoute from "../components/auth/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/product/:brand/:id",
-                element: <ProductDetails />,
+                element: (
+                    <PrivateRoute>
+                        <ProductDetails />
+                    </PrivateRoute>
+                ),
                 loader: ({ params }) =>
                     fetch(
                         `http://localhost:5000/product/${params.brand}/${params.id}`
@@ -40,7 +45,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/add-car",
-                element: <AddCar />,
+                element: (
+                    <PrivateRoute>
+                        <AddCar />
+                    </PrivateRoute>
+                ),
             },
         ],
     },
