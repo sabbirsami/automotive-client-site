@@ -95,27 +95,26 @@ const Navbar = () => {
                                         <ul className="flex flex-col items-start gap-y-10">
                                             <li>
                                                 <NavLink
-                                                    className={"pb-3"}
+                                                    className=" p-4"
                                                     to={"/"}
                                                 >
                                                     Home
                                                 </NavLink>
                                             </li>
-
                                             <li>
                                                 <NavLink
-                                                    className={"pb-3"}
-                                                    to={"/contact"}
+                                                    className=" p-4"
+                                                    to={"/add-car"}
                                                 >
-                                                    Contact Us
+                                                    Add Car
                                                 </NavLink>
                                             </li>
                                             <li>
                                                 <NavLink
-                                                    className={"pb-3"}
-                                                    to={"/purchase"}
+                                                    className=" p-4"
+                                                    to={"/cart"}
                                                 >
-                                                    Purchase Service
+                                                    My Cart
                                                 </NavLink>
                                             </li>
                                             <li>

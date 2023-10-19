@@ -84,8 +84,8 @@ const AddCar = () => {
             <div className=" pb-32 pt-10">
                 <h2 className="text-2xl font-semibold py-6">Add Car</h2>
                 <form className="" onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-3 gap-6">
-                        <div className="">
+                    <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-6">
+                        <div className="pb-6">
                             <div className="bg-[#282435] p-2 rounded-lg items-center h-96  w-full">
                                 {file ? (
                                     <img

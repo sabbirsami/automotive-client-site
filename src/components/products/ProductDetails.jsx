@@ -79,13 +79,13 @@ const ProductDetails = () => {
                     </ul>
                 </nav>
             </div>
-            <div className="grid grid-cols-5 gap-16">
-                <div className="col-span-3 rounded-lg">
+            <div className="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-16">
+                <div className="lg:col-span-3 col-span-1 rounded-lg">
                     <h1 className="text-2xl font-bold pb-6">{name}</h1>
                     <div className=" rounded-lg bg-hero side-opacity bg-cover bg-no-repeat">
                         <img src={img} className=" rounded-lg" alt="" />
                     </div>
-                    <div className="p-10 bg-[#302D3D] rounded-md grid grid-cols-4 gap-4 text-center my-8">
+                    <div className="p-10 bg-[#302D3D] rounded-md grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 text-center my-8">
                         <div className="">
                             <div className="py-2 px-3 mx-auto ">
                                 <img
@@ -136,7 +136,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-2 ">
+                <div className="lg:col-span-2 col-span-1">
                     <div className="pb-6">
                         <span className="py-1 px-2 bg-blue-500 me-3 rounded-md">
                             new
