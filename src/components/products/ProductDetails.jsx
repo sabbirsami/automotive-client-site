@@ -8,6 +8,7 @@ import steering from "../../assets/steering-wheel.svg";
 import accident from "../../assets/accident.svg";
 import { useContext } from "react";
 import { AuthContext } from "../auth/AuthProvider";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
     const { brand } = useParams();
@@ -29,6 +30,23 @@ const ProductDetails = () => {
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);
+                if (result.insertedId) {
+                    toast.success("Car added successfully", {
+                        duration: 4000,
+                        position: "top-center",
+
+                        // Styling
+                        style: {
+                            marginTop: "35px",
+                        },
+
+                        // Aria
+                        ariaProps: {
+                            role: "status",
+                            "aria-live": "polite",
+                        },
+                    });
+                }
             });
     };
     return (

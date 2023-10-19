@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
 import { BsUpload } from "react-icons/bs";
+import toast from "react-hot-toast";
 
 const AddCar = () => {
     const [file, setFile] = useState();
+    const [addCarLoading, setAddCarLoading] = useState(false);
     function handleChange(e) {
         console.log(e.target.files);
         setFile(URL.createObjectURL(e.target.files[0]));
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        setAddCarLoading(true);
         const photoUrl = e.target.photoUrl.value;
         const name = e.target.name.value;
         const brand = e.target.brand.value;
@@ -36,7 +39,45 @@ const AddCar = () => {
             body: JSON.stringify(car),
         })
             .then((res) => res.json())
-            .catch((result) => console.log(result));
+            .then((result) => {
+                console.log(result);
+                setAddCarLoading(false);
+                if (result.insertedId) {
+                    toast.success("Car added successfully", {
+                        duration: 4000,
+                        position: "top-center",
+
+                        // Styling
+                        style: {
+                            marginTop: "35px",
+                        },
+
+                        // Aria
+                        ariaProps: {
+                            role: "status",
+                            "aria-live": "polite",
+                        },
+                    });
+                }
+            })
+            .catch((result) => {
+                console.log(result);
+                toast.error("Fail to add car", {
+                    duration: 4000,
+                    position: "top-center",
+
+                    // Styling
+                    style: {
+                        marginTop: "35px",
+                    },
+
+                    // Aria
+                    ariaProps: {
+                        role: "status",
+                        "aria-live": "polite",
+                    },
+                });
+            });
     };
     return (
         <div className="container-lg">
@@ -249,7 +290,11 @@ const AddCar = () => {
                                     type="submit"
                                     className="w-full mt-8 py-3 bg-[#FD5631] hover:bg-[#fd3831] hover:shadow-md text-white rounded-md"
                                 >
-                                    Add Car
+                                    {addCarLoading ? (
+                                        <span className="loading loading-spinner loading-sm"></span>
+                                    ) : (
+                                        <span>Add Car</span>
+                                    )}
                                 </button>
                             </div>
                         </div>
