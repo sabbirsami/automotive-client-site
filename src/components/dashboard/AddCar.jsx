@@ -247,7 +247,7 @@ const AddCar = () => {
                                 />
                                 <button
                                     type="submit"
-                                    className="w-full mt-8 py-3 bg-[#FD5631] text-white rounded-md"
+                                    className="w-full mt-8 py-3 bg-[#FD5631] hover:bg-[#fd3831] hover:shadow-md text-white rounded-md"
                                 >
                                     Add Car
                                 </button>
