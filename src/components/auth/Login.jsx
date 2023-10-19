@@ -1,11 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/signIn.svg";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "./AuthProvider";
 
 const Login = () => {
-    const { signInWithGoogle } = useContext(AuthContext);
+    const { signInWithGoogle, signInWithEmail } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signInWithEmail(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                navigate("/");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     const handleSignInWithGoogle = () => {
         signInWithGoogle()
             .then((result) => console.log(result))
@@ -26,7 +43,7 @@ const Login = () => {
                     <div className=" col-span-2">
                         <div className="bg-[#282435] rounded-lg md:px-10 p-6 m-3">
                             <h2 className="text-4xl pb-8 pt-4">Sign In</h2>
-                            <form>
+                            <form onSubmit={handleSignIn}>
                                 <label
                                     htmlFor="email"
                                     className="block md:w-96 w-full pb-2 font-semibold"
