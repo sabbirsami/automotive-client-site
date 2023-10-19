@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/reg.svg";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
@@ -7,6 +7,7 @@ import { updateProfile } from "firebase/auth";
 import auth from "./firebase.config";
 const Register = () => {
     const { signInWithGoogle, registerUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +26,7 @@ const Register = () => {
                         displayName: name,
                         photoURL: photo,
                     });
-                    console.log("Here");
+                    navigate("/");
                 }
             })
             .catch((err) => {
