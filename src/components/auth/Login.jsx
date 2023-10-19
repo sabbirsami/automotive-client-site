@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/signIn.svg";
 import { FcGoogle } from "react-icons/fc";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
 
 const Login = () => {
     const { signInWithGoogle, signInWithEmail } = useContext(AuthContext);
+    const [alreadyUsedEmailMessage, setAlreadyUsedEmailMessage] = useState("");
     const navigate = useNavigate();
     const handleSignIn = (e) => {
         e.preventDefault();
@@ -17,9 +18,22 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
+                setAlreadyUsedEmailMessage("");
                 navigate("/");
             })
             .catch((err) => {
+                const errorCode = err.code;
+                if (errorCode == "auth/email-already-exists") {
+                    setAlreadyUsedEmailMessage(
+                        "You already have an account with that email."
+                    );
+                } else if (errorCode === "auth/invalid-password") {
+                    setAlreadyUsedEmailMessage(
+                        "Wrong password. Please try again"
+                    );
+                } else {
+                    setAlreadyUsedEmailMessage(err.message);
+                }
                 console.log(err);
             });
     };
@@ -76,6 +90,9 @@ const Login = () => {
                                     className="r rounded-md w-full py-3 px-4 bg-[#302D3D]"
                                     placeholder="Enter password here.."
                                 />
+                                <label className="block md:w-96 w-full  text-sm text-red-600">
+                                    {alreadyUsedEmailMessage}
+                                </label>
 
                                 <button
                                     type="submit"

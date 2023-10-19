@@ -1,46 +1,75 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/reg.svg";
 import { FcGoogle } from "react-icons/fc";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
 import { updateProfile } from "firebase/auth";
 import auth from "./firebase.config";
+import toast from "react-hot-toast";
 const Register = () => {
-    const { signInWithGoogle, registerUser } = useContext(AuthContext);
+    const { signInWithGoogle, registerUser, setLoading } =
+        useContext(AuthContext);
     const navigate = useNavigate();
+    const [showPasswordValidationMessage, setShowPasswordValidationMessage] =
+        useState("");
+    const [alreadyUsedEmailMessage, setAlreadyUsedEmailMessage] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
+        const checkPassword =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
         const form = e.target;
         const name = form.name.value;
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
 
-        registerUser(email, password)
-            .then((result) => {
-                const user = result.user;
-                console.log(user);
-                if (user) {
+        if (checkPassword.test(password)) {
+            setShowPasswordValidationMessage("");
+            registerUser(email, password)
+                .then((result) => {
+                    const user = result.user;
+                    console.log(user);
                     updateProfile(auth.currentUser, {
                         displayName: name,
                         photoURL: photo,
                     });
+                    toast.success("Successfully Register", {
+                        duration: 2000,
+                        className: "mt-32",
+                    });
+                    setLoading(false);
+                    setAlreadyUsedEmailMessage("");
                     navigate("/");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    setLoading(false);
+                    setAlreadyUsedEmailMessage(err.message);
+                    toast.error(" Register fail", {
+                        duration: 2000,
+                        className: "mt-32",
+                    });
+                });
+            console.log("ok");
+        } else {
+            setLoading(false);
+            return setShowPasswordValidationMessage(
+                "Password must contain at least one uppercase letter, one special character and be at least 6 characters long"
+            );
+        }
     };
     const handleSignInWithGoogle = () => {
         signInWithGoogle()
             .then((result) => {
                 console.log(result);
+                setAlreadyUsedEmailMessage("");
                 navigate("/");
             })
             .catch((err) => {
                 console.log(err);
+                setAlreadyUsedEmailMessage(err.message);
             });
     };
     return (
@@ -114,6 +143,12 @@ const Register = () => {
                                     className="r rounded-md w-full py-3 px-4 bg-[#302D3D]"
                                     placeholder="Enter password here.."
                                 />
+                                <label className="block md:w-96 w-full text-sm text-red-600">
+                                    {showPasswordValidationMessage}
+                                </label>
+                                <label className="block md:w-96 w-full  text-sm text-red-600">
+                                    {alreadyUsedEmailMessage}
+                                </label>
 
                                 <button
                                     type="submit"
