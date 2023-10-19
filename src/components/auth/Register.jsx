@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/signIn.svg";
+import logo from "../../assets/reg.svg";
 import { FcGoogle } from "react-icons/fc";
-
-const Login = () => {
+const Register = () => {
     return (
         <div>
             <div className="container-lg">
@@ -15,11 +14,25 @@ const Login = () => {
                     </div>
                     <div className=" col-span-2">
                         <div className="bg-[#282435] rounded-lg md:px-10 p-6 m-3">
-                            <h2 className="text-4xl pb-8 pt-4">Sign In</h2>
+                            <h2 className="text-4xl pb-8 pt-4">Register</h2>
                             <form>
                                 <label
                                     htmlFor="email"
                                     className="block md:w-96 w-full pb-2 font-semibold"
+                                >
+                                    Your Name{" "}
+                                    <span className="text-red-600">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    required
+                                    className=" rounded-md w-full py-3  px-4 bg-[#302D3D]"
+                                    placeholder="Enter email here.."
+                                />
+                                <label
+                                    htmlFor="email"
+                                    className="block md:w-96 w-full pt-8 pb-2 font-semibold"
                                 >
                                     Your Email{" "}
                                     <span className="text-red-600">*</span>
@@ -51,7 +64,7 @@ const Login = () => {
                                     type="submit"
                                     className="w-full mt-8 py-3 bg-[#FD5631] hover:bg-[#fd3831] hover:shadow-md text-white rounded-md"
                                 >
-                                    Sign In
+                                    Register
                                 </button>
                             </form>
                             <div className="divider">OR</div>
@@ -60,17 +73,17 @@ const Login = () => {
                                 type="submit"
                                 className="w-full flex items-center justify-center gap-3 py-3 border border-[#FD5631] hover:bg-[#fd3831]/40 rounded-md text-dark"
                             >
-                                <FcGoogle className="text-2xl"></FcGoogle>Sign
-                                In with Google
+                                <FcGoogle className="text-2xl"></FcGoogle>
+                                Register with Google
                             </button>
                             <div className="">
                                 <p className=" pt-6">
-                                    Don&#39;t have any account?{" "}
+                                    Already have any account?{" "}
                                     <Link
                                         className="underline text-[#FD5631]"
-                                        to={"/register"}
+                                        to={"/login"}
                                     >
-                                        Register
+                                        Sign In
                                     </Link>
                                 </p>
                             </div>
@@ -82,4 +95,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
