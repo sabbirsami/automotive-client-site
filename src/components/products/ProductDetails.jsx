@@ -6,13 +6,33 @@ import check from "../../assets/check.svg";
 import driving from "../../assets/driving-test.svg";
 import steering from "../../assets/steering-wheel.svg";
 import accident from "../../assets/accident.svg";
+import { useContext } from "react";
+import { AuthContext } from "../auth/AuthProvider";
 
 const ProductDetails = () => {
     const { brand } = useParams();
     const selectedCar = useLoaderData();
+    const { user } = useContext(AuthContext);
     const { name, price, type, img, description } = selectedCar[0];
+    const handleAddToCart = () => {
+        const userId = user.uid;
+        const userEmail = user.email;
+        const cartData = { name, type, img, brand, userId, userEmail };
+        console.log(cartData);
+        fetch("http://localhost:5000/cart", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(cartData),
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result);
+            });
+    };
     return (
-        <div className="container-lg">
+        <div className="container-lg pb-28">
             <div className="py-6">
                 <nav>
                     <ul className="flex">
@@ -166,7 +186,10 @@ const ProductDetails = () => {
                             smd71430@gmail.com
                         </p>
                     </div>
-                    <button className="w-full mt-8 py-3 bg-[#FD5631] hover:bg-[#fd3831] hover:shadow-md text-white rounded-md">
+                    <button
+                        onClick={handleAddToCart}
+                        className="w-full mt-8 py-3 bg-[#FD5631] hover:bg-[#fd3831] hover:shadow-md text-white rounded-md"
+                    >
                         Add to Cart
                     </button>
                 </div>

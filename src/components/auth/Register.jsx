@@ -35,7 +35,10 @@ const Register = () => {
     };
     const handleSignInWithGoogle = () => {
         signInWithGoogle()
-            .then((result) => console.log(result))
+            .then((result) => {
+                console.log(result);
+                navigate("/");
+            })
             .catch((err) => {
                 console.log(err);
             });
