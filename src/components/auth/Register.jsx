@@ -3,8 +3,35 @@ import logo from "../../assets/reg.svg";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "./AuthProvider";
+import { updateProfile } from "firebase/auth";
+import auth from "./firebase.config";
 const Register = () => {
-    const { signInWithGoogle } = useContext(AuthContext);
+    const { signInWithGoogle, registerUser } = useContext(AuthContext);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const photo = form.photo.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        registerUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                if (user) {
+                    updateProfile(auth.currentUser, {
+                        displayName: name,
+                        photoURL: photo,
+                    });
+                    console.log("Here");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     const handleSignInWithGoogle = () => {
         signInWithGoogle()
             .then((result) => console.log(result))
@@ -25,7 +52,7 @@ const Register = () => {
                     <div className=" col-span-2">
                         <div className="bg-[#282435] rounded-lg md:px-10 p-6 m-3">
                             <h2 className="text-4xl pb-8 pt-4">Register</h2>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <label
                                     htmlFor="email"
                                     className="block md:w-96 w-full pb-2 font-semibold"
@@ -39,6 +66,20 @@ const Register = () => {
                                     required
                                     className=" rounded-md w-full py-3  px-4 bg-[#302D3D]"
                                     placeholder="Enter email here.."
+                                />
+                                <label
+                                    htmlFor="photo"
+                                    className="block md:w-96 w-full pt-8 pb-2 font-semibold"
+                                >
+                                    Photo URL{" "}
+                                    <span className="text-red-600">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="photo"
+                                    required
+                                    className=" rounded-md w-full py-3  px-4 bg-[#302D3D]"
+                                    placeholder="Enter photo URL.."
                                 />
                                 <label
                                     htmlFor="email"
