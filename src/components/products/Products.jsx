@@ -4,8 +4,7 @@ import Product from "./Product";
 const Products = () => {
     const { brand } = useParams();
     const cars = useLoaderData();
-    console.log(cars);
-    console.log(brand);
+
     return (
         <div>
             <div className="container-lg py-16">
@@ -39,7 +38,7 @@ const Products = () => {
                             <div className="col-span-4">
                                 <h1 className=" text-5xl ps-8 pb-10">
                                     {" "}
-                                    Get 20% off on {brand} cars
+                                    Best selling {brand} car of the year
                                 </h1>
                             </div>
                             <div className="w-2/3">

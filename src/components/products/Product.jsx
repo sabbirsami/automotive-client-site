@@ -4,11 +4,10 @@ import { IoMdArrowForward } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
 
 function Product({ car }) {
-    console.log(car);
     return (
         <div className=" bg-[#302D3D] rounded-md">
-            <div className="bg-white/50 h-64 rounded-t-md">
-                <span className="relative">
+            <div className="side-opacity h-64 rounded-t-md">
+                <span className="relative ">
                     <img
                         src={car?.img}
                         className="w-full object-cover h-full"
@@ -40,7 +39,7 @@ function Product({ car }) {
                 </p>
                 <Link
                     className="w-full block py-3 mt-6 rounded-md text-sm text-center mx-auto bg-[#1f1b2d]"
-                    to={`/product/bmw/:${car._id}`}
+                    to={`/product/${car.brand}/${car._id}`}
                 >
                     Details <IoMdArrowForward className="inline" />
                 </Link>
