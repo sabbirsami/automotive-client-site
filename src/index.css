@@ -9,6 +9,8 @@ body {
 .container-lg {
     max-width: 1280px;
     margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 .active {
     color: #fd5631;
