@@ -275,7 +275,7 @@ const UpdateCar = () => {
                                     <span className="text-red-600">*</span>
                                 </label>
                                 <input
-                                    type="number"
+                                    type="text"
                                     name="rating"
                                     defaultValue={rating}
                                     required

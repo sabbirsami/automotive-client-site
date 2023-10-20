@@ -21,7 +21,14 @@ const Products = () => {
                                 </h1>
                             </div>
                             <div className="w-2/3">
-                                <img src={cars[1].img} className="w-full" />
+                                <img
+                                    src={
+                                        cars[1]
+                                            ? cars[1].img
+                                            : "https://i.ibb.co/jgxffzk/pngegg-2.png"
+                                    }
+                                    className="w-full"
+                                />
                             </div>
                         </div>
                         <div className="absolute flex gap-6 transform -translate-y-1/2 left-5 right-5 bottom-1">
@@ -42,7 +49,14 @@ const Products = () => {
                                 </h1>
                             </div>
                             <div className="w-2/3">
-                                <img src={cars[2].img} className="w-full" />
+                                <img
+                                    src={
+                                        cars[2]
+                                            ? cars[2].img
+                                            : "https://i.ibb.co/k6fNDFm/pngegg-3.png"
+                                    }
+                                    className="w-full"
+                                />
                             </div>
                         </div>
                         <div className="absolute flex gap-6 transform -translate-y-1/2 left-5 right-5 bottom-1">
@@ -63,7 +77,14 @@ const Products = () => {
                                 </h1>
                             </div>
                             <div className="">
-                                <img src={cars[4].img} className="w-full" />
+                                <img
+                                    src={
+                                        cars[4]
+                                            ? cars[4].img
+                                            : "https://i.ibb.co/zstHKqD/pngegg-4.png"
+                                    }
+                                    className="w-full"
+                                />
                             </div>
                         </div>
                         <div className="absolute flex gap-6 transform -translate-y-1/2 left-5 right-5 bottom-1">
@@ -78,9 +99,15 @@ const Products = () => {
                 </div>
                 <div className="pt-6">
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-                        {cars?.map((car) => (
-                            <Product key={car._id} car={car}></Product>
-                        ))}
+                        {brand == "toyota" && cars.length == 6 ? (
+                            <h1 className="md:text-2xl text-xl text-red-500">
+                                {brand} car not available*
+                            </h1>
+                        ) : (
+                            cars?.map((car) => (
+                                <Product key={car._id} car={car}></Product>
+                            ))
+                        )}
                     </div>
                 </div>
             </div>
