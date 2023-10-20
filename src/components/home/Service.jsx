@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { IoPricetags, IoSettingsSharp, IoFitness } from "react-icons/io5";
+import { AuthContext } from "../auth/AuthProvider";
 
 const Service = () => {
+    const { light } = useContext(AuthContext);
     return (
-        <div>
+        <div className={`${light ? "bg-white text-black" : "bg-[#1f1b2d]"}`}>
             <div className="container-lg pt-16 pb-32">
                 <div className="grid lg:grid-cols-6  md:gap-10 gap-5">
                     <div className="lg:col-span-2">
@@ -16,7 +19,11 @@ const Service = () => {
                     <div className="lg:col-span-3">
                         <div className=" flex md:gap-8 gap-3 ">
                             <div className="">
-                                <div className="p-5 bg-[#302D3D] shadow-xl  inline-block rounded-md">
+                                <div
+                                    className={`${
+                                        light ? "bg-gray-300" : "bg-[#302D3D]"
+                                    } p-5  shadow-xl  inline-block rounded-md`}
+                                >
                                     <IoPricetags className="text-3xl"></IoPricetags>
                                 </div>
                             </div>
@@ -24,7 +31,13 @@ const Service = () => {
                                 <h2 className="text-2xl">
                                     Deals for every budget
                                 </h2>
-                                <p className="text-base text-white/50 pt-4">
+                                <p
+                                    className={`text-base ${
+                                        light
+                                            ? "text-black/50"
+                                            : "text-white/50"
+                                    } pt-4`}
+                                >
                                     incredible price on branded cars and
                                     packages worldwide. cars with a full service
                                     history are more attractive to potential
@@ -34,13 +47,23 @@ const Service = () => {
                         </div>
                         <div className=" flex md:gap-8 gap-3 pt-8">
                             <div className="">
-                                <div className="p-5 bg-[#302D3D] shadow-xl inline-block rounded-md">
+                                <div
+                                    className={`${
+                                        light ? "bg-gray-300" : "bg-[#302D3D]"
+                                    } p-5  shadow-xl  inline-block rounded-md`}
+                                >
                                     <IoSettingsSharp className="text-3xl"></IoSettingsSharp>
                                 </div>
                             </div>
                             <div className="">
                                 <h2 className="text-2xl">Smoother engine</h2>
-                                <p className="text-base text-white/50 pt-4">
+                                <p
+                                    className={`text-base ${
+                                        light
+                                            ? "text-black/50"
+                                            : "text-white/50"
+                                    } pt-4`}
+                                >
                                     Changing your engine oil and oil filter
                                     every year will lubricate moving parts more
                                     effectively and help to increase fuel
@@ -50,13 +73,23 @@ const Service = () => {
                         </div>
                         <div className=" flex md:gap-8 gap-3 pt-8">
                             <div className="">
-                                <div className="p-5 bg-[#302D3D] shadow-xl inline-block rounded-md">
+                                <div
+                                    className={`${
+                                        light ? "bg-gray-300" : "bg-[#302D3D]"
+                                    } p-5  shadow-xl  inline-block rounded-md`}
+                                >
                                     <IoFitness className="text-3xl"></IoFitness>
                                 </div>
                             </div>
                             <div className="">
                                 <h2 className="text-2xl">More reliable</h2>
-                                <p className="text-base text-white/50 pt-4">
+                                <p
+                                    className={`text-base ${
+                                        light
+                                            ? "text-black/50"
+                                            : "text-white/50"
+                                    } pt-4`}
+                                >
                                     Regular checks to key components and the
                                     replacement of worn parts will detect and
                                     eliminate any faults that are likely to

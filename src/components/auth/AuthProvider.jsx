@@ -15,6 +15,8 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [light, setLight] = useState(false);
+    console.log(light);
 
     const provider = new GoogleAuthProvider();
 
@@ -51,6 +53,8 @@ const AuthProvider = ({ children }) => {
         signOutUser,
         signInWithEmail,
         setLoading,
+        light,
+        setLight,
     };
 
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

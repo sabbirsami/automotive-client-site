@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import logo from "../../assets/logo.svg";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiSendPlaneFill } from "react-icons/ri";
+import { AuthContext } from "../auth/AuthProvider";
 const Footer = () => {
+    const { light } = useContext(AuthContext);
     return (
-        <div className=" bg-[#282435]">
+        <div className={`${light ? "bg-gray-300 text-black" : "bg-[#282435]"}`}>
             <div className="border-b border-gray-600">
                 <div className="container-lg">
                     <div className="flex  justify-between items-center py-5">
@@ -35,7 +38,9 @@ const Footer = () => {
                             <input
                                 type="text"
                                 placeholder="Your email"
-                                className="bg-[#302D3D] p-4 rounded-md w-full"
+                                className={`${
+                                    light ? "bg-white" : "bg-[#302D3D]"
+                                } p-4 rounded-md w-full`}
                             />
                             <button className="absolute bg-[#FD5631] p-2 rounded-md right-2 top-2">
                                 <RiSendPlaneFill className="text-2xl  me-1" />

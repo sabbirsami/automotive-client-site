@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { AuthContext } from "../auth/AuthProvider";
+
 const FnQ = () => {
+    const { light } = useContext(AuthContext);
     return (
         <div>
             <div className="container-lg pb-16">
@@ -6,7 +10,13 @@ const FnQ = () => {
                 <div className="grid lg:grid-cols-2 lg:gap-16">
                     <div className="">
                         <div className="join join-vertical w-full rounded-none">
-                            <div className="collapse collapse-arrow join-item rounded-none border-t border-white/40 py-4">
+                            <div
+                                className={`collapse collapse-arrow join-item rounded-none border-t ${
+                                    light
+                                        ? "border-black/40"
+                                        : "border-white/40"
+                                } py-4`}
+                            >
                                 <input type="radio" name="my-accordion-4" />
                                 <div className="collapse-title text-xl font-medium">
                                     What is the on-road price of the car?
@@ -29,7 +39,13 @@ const FnQ = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="collapse collapse-arrow join-item border-t border-white/40  py-4">
+                            <div
+                                className={`collapse collapse-arrow join-item rounded-none border-t ${
+                                    light
+                                        ? "border-black/40"
+                                        : "border-white/40"
+                                } py-4`}
+                            >
                                 <input type="radio" name="my-accordion-4" />
                                 <div className="collapse-title text-xl font-medium">
                                     What are the maintenance intervals and cost
@@ -51,7 +67,13 @@ const FnQ = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="collapse collapse-arrow join-item border-t border-white/40  py-4">
+                            <div
+                                className={`collapse collapse-arrow join-item rounded-none border-t ${
+                                    light
+                                        ? "border-black/40"
+                                        : "border-white/40"
+                                } py-4`}
+                            >
                                 <input type="radio" name="my-accordion-4" />
                                 <div className="collapse-title text-xl font-medium">
                                     Where is the nearest service centre?
@@ -80,7 +102,13 @@ const FnQ = () => {
                     </div>
                     <div className="">
                         <div className="join join-vertical w-full rounded-none">
-                            <div className="collapse collapse-arrow join-item border-t border-white/40 py-4">
+                            <div
+                                className={`collapse collapse-arrow join-item rounded-none border-t ${
+                                    light
+                                        ? "border-black/40"
+                                        : "border-white/40"
+                                } py-4`}
+                            >
                                 <input type="radio" name="my-accordion-4" />
                                 <div className="collapse-title text-xl font-medium">
                                     Has the car been used as a demo car?
@@ -101,7 +129,13 @@ const FnQ = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="collapse collapse-arrow join-item border-t border-white/40 py-4">
+                            <div
+                                className={`collapse collapse-arrow join-item rounded-none border-t ${
+                                    light
+                                        ? "border-black/40"
+                                        : "border-white/40"
+                                } py-4`}
+                            >
                                 <input type="radio" name="my-accordion-4" />
                                 <div className="collapse-title text-xl font-medium">
                                     How soon will my car be delivered?
@@ -124,7 +158,13 @@ const FnQ = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="collapse collapse-arrow join-item border-t border-white/40 py-4">
+                            <div
+                                className={`collapse collapse-arrow join-item rounded-none border-t ${
+                                    light
+                                        ? "border-black/40"
+                                        : "border-white/40"
+                                } py-4`}
+                            >
                                 <input type="radio" name="my-accordion-4" />
                                 <div className="collapse-title text-xl font-medium">
                                     How soon will my car&#39;s RC and number

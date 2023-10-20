@@ -6,7 +6,7 @@ import { SlMenu } from "react-icons/sl";
 import { RxCross1 } from "react-icons/rx";
 
 const Navbar = () => {
-    const { user, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser, setLight, light } = useContext(AuthContext);
     const [hide, setHide] = useState(false);
 
     const handleSignOut = () => {
@@ -19,13 +19,17 @@ const Navbar = () => {
             });
     };
     return (
-        <div className="sticky">
+        <div className={`${light ? "bg-white text-black" : "bg-[#1f1b2d]"}`}>
             <div className="container-lg">
                 <div className="flex justify-between items-center py-5">
                     <div className="">
                         <img src={logo} alt="" />
                     </div>
-                    <nav className=" text-white ">
+                    <nav
+                        className={`${
+                            light ? "bg-white text-black" : "bg-[#1f1b2d]"
+                        } flex`}
+                    >
                         <ul className="lg:flex items-center hidden">
                             <li>
                                 <NavLink className=" p-4" to={"/"}>
@@ -42,10 +46,23 @@ const Navbar = () => {
                                     My Cart
                                 </NavLink>
                             </li>
+                            <li>
+                                <input
+                                    type="checkbox"
+                                    className="toggle toggle-warning  mt-2 me-4"
+                                    onClick={() => setLight(!light)}
+                                />
+                            </li>
 
                             <li>
                                 {user ? (
-                                    <div className=" bg-[#302D3D] py-1 px-2 flex gap-2 rounded-full items-center">
+                                    <div
+                                        className={` ${
+                                            light
+                                                ? "bg-gray-300 text-black"
+                                                : "bg-[#302D3D] text-white"
+                                        } py-1 px-2 flex gap-2 rounded-full items-center`}
+                                    >
                                         <p className="ps-1">
                                             {user.displayName}
                                         </p>
