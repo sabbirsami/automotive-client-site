@@ -2,10 +2,14 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
 import { BsUpload } from "react-icons/bs";
+import { useLoaderData, useParams } from "react-router-dom";
 
 const UpdateCar = () => {
     const [file, setFile] = useState();
     const [addCarLoading, setAddCarLoading] = useState(false);
+    const { brand } = useParams();
+    const selectedCar = useLoaderData();
+    const { _id, name, price, type, img, description, rating } = selectedCar[0];
     function handleChange(e) {
         console.log(e.target.files);
         setFile(URL.createObjectURL(e.target.files[0]));
@@ -20,7 +24,7 @@ const UpdateCar = () => {
         const price = e.target.price.value;
         const rating = e.target.rating.value;
         const description = e.target.description.value;
-        const car = {
+        const updateCar = {
             photoUrl,
             name,
             brand,
@@ -29,21 +33,21 @@ const UpdateCar = () => {
             description,
             rating,
         };
-        console.log(car);
+        console.log(updateCar);
 
-        fetch("http://localhost:5000/cars", {
-            method: "POST",
+        fetch(`http://localhost:5000/product/${brand}/${_id}`, {
+            method: "PUT",
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify(car),
+            body: JSON.stringify(updateCar),
         })
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);
                 setAddCarLoading(false);
-                if (result.insertedId) {
-                    toast.success("Car added successfully", {
+                if (result.modifiedCount) {
+                    toast.success("Car updated successfully", {
                         duration: 4000,
                         position: "top-center",
 
@@ -62,7 +66,8 @@ const UpdateCar = () => {
             })
             .catch((result) => {
                 console.log(result);
-                toast.error("Fail to add car", {
+                setAddCarLoading(false);
+                toast.error("Fail to update car", {
                     duration: 4000,
                     position: "top-center",
 
@@ -82,7 +87,7 @@ const UpdateCar = () => {
     return (
         <div className="container-lg">
             <div className=" pb-32 pt-10">
-                <h2 className="text-2xl font-semibold py-6">Add Car</h2>
+                <h2 className="text-2xl font-semibold py-6">Update Car</h2>
                 <form className="" onSubmit={handleSubmit}>
                     <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-6">
                         <div className="pb-6">
@@ -126,6 +131,7 @@ const UpdateCar = () => {
                             <input
                                 type="text"
                                 name="photoUrl"
+                                defaultValue={img}
                                 required
                                 className=" rounded-md w-full py-3  px-4 bg-[#302D3D]"
                                 placeholder="Enter photo URL"
@@ -143,6 +149,7 @@ const UpdateCar = () => {
                                 <input
                                     type="text"
                                     name="name"
+                                    defaultValue={name}
                                     required
                                     className=" rounded-md w-full py-3  px-4 bg-[#302D3D]"
                                     placeholder="Enter Car name"
@@ -159,6 +166,7 @@ const UpdateCar = () => {
                                     name="brand"
                                     className="r rounded-md text-white/40 w-full py-3 px-4 bg-[#302D3D]"
                                     id="pet-select"
+                                    defaultValue={brand}
                                 >
                                     <option className="rounded-md" value="">
                                         Select car brand
@@ -199,6 +207,7 @@ const UpdateCar = () => {
                                             name="type"
                                             className="r rounded-md  text-white/40 w-full py-3 px-4 bg-[#302D3D]"
                                             id="pet-select"
+                                            defaultValue={type}
                                         >
                                             <option
                                                 className="rounded-md"
@@ -249,9 +258,10 @@ const UpdateCar = () => {
                                             </span>
                                         </label>
                                         <input
-                                            type="price"
+                                            type="number"
                                             name="price"
                                             required
+                                            defaultValue={price}
                                             className="r rounded-md w-full py-3 px-4 bg-[#302D3D]"
                                             placeholder="Enter car price"
                                         />
@@ -267,6 +277,7 @@ const UpdateCar = () => {
                                 <input
                                     type="number"
                                     name="rating"
+                                    defaultValue={rating}
                                     required
                                     className="r rounded-md w-full py-3 px-4 bg-[#302D3D]"
                                     placeholder="Enter car rating"
@@ -282,6 +293,7 @@ const UpdateCar = () => {
                                     name="description"
                                     cols="30"
                                     rows="8"
+                                    defaultValue={description}
                                     required
                                     className=" rounded-md w-full py-3  px-4 bg-[#302D3D]"
                                     placeholder="Car details....."
@@ -293,7 +305,7 @@ const UpdateCar = () => {
                                     {addCarLoading ? (
                                         <span className="loading loading-spinner loading-sm"></span>
                                     ) : (
-                                        <span>Add Car</span>
+                                        <span>Update Car</span>
                                     )}
                                 </button>
                             </div>

@@ -75,8 +75,8 @@ const Register = () => {
     return (
         <div>
             <div className="container-lg">
-                <div className="grid grid-cols-5 items-center gap-10 justify-between my-16">
-                    <div className="h-full flex flex-col justify-between items-start col-span-3">
+                <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 items-center gap-10 justify-between my-16">
+                    <div className="h-full flex flex-col justify-between items-start xl:col-span-3 lg:col-span-2">
                         <h2 className="text-4xl pb-8">
                             Hey there! <br /> Welcome back.
                         </h2>

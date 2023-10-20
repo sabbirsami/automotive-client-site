@@ -77,6 +77,7 @@ const AddCar = () => {
                         "aria-live": "polite",
                     },
                 });
+                setAddCarLoading(false);
             });
     };
     return (

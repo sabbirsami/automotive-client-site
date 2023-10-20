@@ -50,14 +50,14 @@ const Login = () => {
     return (
         <div>
             <div className="container-lg">
-                <div className="grid grid-cols-5 items-center gap-10 justify-between my-16">
-                    <div className="h-full flex flex-col justify-between items-start col-span-3">
+                <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 items-center gap-10 justify-between my-16">
+                    <div className="h-full flex flex-col justify-between items-start lg:col-span-3 md:col-span-1 ">
                         <h2 className="text-4xl pb-8">
                             Hey there! <br /> Welcome back.
                         </h2>
-                        <img src={logo} alt="" />
+                        <img className="" src={logo} alt="" />
                     </div>
-                    <div className=" col-span-2">
+                    <div className=" lg:col-span-2 md:col-span-2">
                         <div className="bg-[#282435] rounded-lg md:px-10 p-6 m-3">
                             <h2 className="text-4xl pb-8 pt-4">Sign In</h2>
                             <form onSubmit={handleSignIn}>
