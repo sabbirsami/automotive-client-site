@@ -1,7 +1,7 @@
 ## Finder
 
 ```javascript
-https://best-event-planner.web.app/
+https://car-finder-2023.web.app/
 ```
 
 ## Project features
