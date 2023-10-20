@@ -9,6 +9,7 @@ import Register from "../components/auth/Register";
 import PrivateRoute from "../components/auth/PrivateRoute";
 import MyCart from "../components/navbar/MyCart";
 import ErrorElement from "../components/shared/ErrorElement";
+import UpdateCar from "../components/dashboard/UpdateCar";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,18 @@ const router = createBrowserRouter([
                 element: (
                     <PrivateRoute>
                         <ProductDetails />
+                    </PrivateRoute>
+                ),
+                loader: ({ params }) =>
+                    fetch(
+                        `http://localhost:5000/product/${params.brand}/${params.id}`
+                    ),
+            },
+            {
+                path: "/update/:brand/:id",
+                element: (
+                    <PrivateRoute>
+                        <UpdateCar />
                     </PrivateRoute>
                 ),
                 loader: ({ params }) =>

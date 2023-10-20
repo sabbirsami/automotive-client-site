@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
+import { FiEdit } from "react-icons/fi";
 
 function Product({ car }) {
     return (
@@ -22,7 +23,7 @@ function Product({ car }) {
                     </span>
                 </span>
             </div>
-            <div className="p-7">
+            <div className="p-7 relative">
                 <h2 className="text-xl font-semibold flex justify-between items-center">
                     <span className="">{car?.name}</span>
                     <span className="text-[#FD5631]">${car?.price}</span>
@@ -38,10 +39,17 @@ function Product({ car }) {
                     </span>
                 </p>
                 <Link
-                    className="w-full block py-3 mt-6 rounded-md text-sm text-center mx-auto bg-[#1f1b2d]"
+                    className="w-full block py-3 mt-6 rounded-md text-sm text-center mx-auto bg-[#1f1b2d] hover:bg-[#1f1a30]"
                     to={`/product/${car.brand}/${car._id}`}
                 >
                     Details <IoMdArrowForward className="inline" />
+                </Link>
+                <Link
+                    to={`/update/${car.brand}/${car._id}`}
+                    className="bg-[#1f1b2d] py-1 px-3 absolute -top-6 right-5 rounded-full hover:bg-[#1f1a30]"
+                >
+                    <FiEdit className="inline" />{" "}
+                    <span className="text-sm">Update</span>
                 </Link>
             </div>
         </div>
