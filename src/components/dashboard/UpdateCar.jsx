@@ -35,13 +35,16 @@ const UpdateCar = () => {
         };
         console.log(updateCar);
 
-        fetch(`http://localhost:5000/product/${brand}/${_id}`, {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(updateCar),
-        })
+        fetch(
+            `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/product/${brand}/${_id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(updateCar),
+            }
+        )
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);

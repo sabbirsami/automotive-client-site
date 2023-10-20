@@ -20,13 +20,16 @@ const ProductDetails = () => {
         const userEmail = user.email;
         const cartData = { name, type, img, brand, price, userId, userEmail };
         console.log(cartData);
-        fetch("http://localhost:5000/cart", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(cartData),
-        })
+        fetch(
+            "https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/cart",
+            {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(cartData),
+            }
+        )
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);

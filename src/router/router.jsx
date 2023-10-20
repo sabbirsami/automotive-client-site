@@ -28,7 +28,10 @@ const router = createBrowserRouter([
                         <MyCart />
                     </PrivateRoute>
                 ),
-                loader: () => fetch(`http://localhost:5000/cart/`),
+                loader: () =>
+                    fetch(
+                        `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/cart/`
+                    ),
             },
             {
                 path: "/login",
@@ -42,7 +45,9 @@ const router = createBrowserRouter([
                 path: "/product/:brand",
                 element: <Products />,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/product/${params.brand}`),
+                    fetch(
+                        `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/product/${params.brand}`
+                    ),
             },
             {
                 path: "/product/:brand/:id",
@@ -53,7 +58,7 @@ const router = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(
-                        `http://localhost:5000/product/${params.brand}/${params.id}`
+                        `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/product/${params.brand}/${params.id}`
                     ),
             },
             {
@@ -65,7 +70,7 @@ const router = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(
-                        `http://localhost:5000/product/${params.brand}/${params.id}`
+                        `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/product/${params.brand}/${params.id}`
                     ),
             },
             {
