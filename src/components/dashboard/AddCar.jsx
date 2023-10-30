@@ -4,85 +4,102 @@ import { BsUpload } from "react-icons/bs";
 import toast from "react-hot-toast";
 
 const AddCar = () => {
-    const [file, setFile] = useState();
+    const imageUploadKey = "4890ef86cb137afcf283d9e2b184076a";
+    const [uploadFile, setFile] = useState();
+    const [uploadedImage, setUploadedImage] = useState();
+
     const [addCarLoading, setAddCarLoading] = useState(false);
     function handleChange(e) {
-        console.log(e.target.files);
         setFile(URL.createObjectURL(e.target.files[0]));
+        setUploadedImage(e.target.files[0]);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
         setAddCarLoading(true);
-        const photoUrl = e.target.photoUrl.value;
-        const name = e.target.name.value;
-        const brand = e.target.brand.value;
-        const type = e.target.type.value;
-        const price = e.target.price.value;
-        const rating = e.target.rating.value;
-        const description = e.target.description.value;
-        const car = {
-            photoUrl,
-            name,
-            brand,
-            type,
-            price,
-            description,
-            rating,
-        };
-        console.log(car);
 
-        fetch(
-            "https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/cars",
-            {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(car),
-            }
-        )
-            .then((res) => res.json())
+        const image = uploadedImage;
+        console.log(uploadedImage);
+        const formData = new FormData();
+        formData.append("image", image);
+        const url = `https://api.imgbb.com/1/upload??expiration=6000&key=${imageUploadKey}`;
+        fetch(url, {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => response.json())
             .then((result) => {
-                console.log(result);
-                setAddCarLoading(false);
-                if (result.insertedId) {
-                    toast.success("Car added successfully", {
-                        duration: 4000,
-                        position: "top-center",
+                if (result.success) {
+                    const img = result.data.url;
+                    const name = e.target.name.value;
+                    const brand = e.target.brand.value;
+                    const type = e.target.type.value;
+                    const price = e.target.price.value;
+                    const rating = e.target.rating.value;
+                    const description = e.target.description.value;
+                    const car = {
+                        img,
+                        name,
+                        brand,
+                        type,
+                        price,
+                        description,
+                        rating,
+                    };
+                    fetch(
+                        "https://automotive-server-site-gamma.vercel.app/cars",
+                        {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json",
+                            },
+                            body: JSON.stringify(car),
+                        }
+                    )
+                        .then((res) => res.json())
+                        .then((result) => {
+                            console.log(result);
+                            setAddCarLoading(false);
+                            if (result.insertedId) {
+                                toast.success("Car added successfully", {
+                                    duration: 4000,
+                                    position: "top-center",
 
-                        // Styling
-                        style: {
-                            marginTop: "35px",
-                        },
+                                    // Styling
+                                    style: {
+                                        marginTop: "35px",
+                                    },
 
-                        // Aria
-                        ariaProps: {
-                            role: "status",
-                            "aria-live": "polite",
-                        },
-                    });
+                                    // Aria
+                                    ariaProps: {
+                                        role: "status",
+                                        "aria-live": "polite",
+                                    },
+                                });
+                            }
+                        })
+                        .catch((result) => {
+                            console.log(result);
+                            toast.error("Fail to add car", {
+                                duration: 4000,
+                                position: "top-center",
+
+                                // Styling
+                                style: {
+                                    marginTop: "35px",
+                                },
+
+                                // Aria
+                                ariaProps: {
+                                    role: "status",
+                                    "aria-live": "polite",
+                                },
+                            });
+                            setAddCarLoading(false);
+                        });
                 }
-            })
-            .catch((result) => {
-                console.log(result);
-                toast.error("Fail to add car", {
-                    duration: 4000,
-                    position: "top-center",
-
-                    // Styling
-                    style: {
-                        marginTop: "35px",
-                    },
-
-                    // Aria
-                    ariaProps: {
-                        role: "status",
-                        "aria-live": "polite",
-                    },
-                });
-                setAddCarLoading(false);
             });
     };
+
     return (
         <div className="container-lg">
             <div className=" pb-32 pt-10">
@@ -91,10 +108,10 @@ const AddCar = () => {
                     <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-6">
                         <div className="pb-6">
                             <div className="bg-[#282435] p-2 rounded-lg items-center h-96  w-full">
-                                {file ? (
+                                {uploadFile ? (
                                     <img
                                         className="object-cover border-0  rounded-lg w-full h-full mx-auto my-auto mb-0"
-                                        src={file}
+                                        src={uploadFile}
                                         alt=""
                                     />
                                 ) : (
@@ -119,21 +136,6 @@ const AddCar = () => {
                                     className="bg-[#302D3D] hidden w-full rounded-lg py-3 text-center font-semibold"
                                 />
                             </div>
-
-                            <label
-                                htmlFor="photoUrl"
-                                className="block md:w-96 w-full pb-2 pt-8 font-semibold"
-                            >
-                                Photo URL{" "}
-                                <span className="text-red-600">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                name="photoUrl"
-                                required
-                                className=" rounded-md w-full py-3  px-4 bg-[#302D3D]"
-                                placeholder="Enter photo URL"
-                            />
                         </div>
                         <div className=" col-span-2">
                             <div className="bg-[#282435] rounded-lg md:px-10 p-6">

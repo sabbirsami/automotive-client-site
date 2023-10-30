@@ -36,7 +36,7 @@ const UpdateCar = () => {
         console.log(updateCar);
 
         fetch(
-            `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/product/${brand}/${_id}`,
+            `https://automotive-server-site-gamma.vercel.app/product/${brand}/${_id}`,
             {
                 method: "PUT",
                 headers: {

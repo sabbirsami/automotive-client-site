@@ -30,7 +30,7 @@ const router = createBrowserRouter([
                 ),
                 loader: () =>
                     fetch(
-                        `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/cart/`
+                        `https://automotive-server-site-gamma.vercel.app/cart/`
                     ),
             },
             {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
                 element: <Products />,
                 loader: ({ params }) =>
                     fetch(
-                        `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/product/${params.brand}`
+                        `https://automotive-server-site-gamma.vercel.app/product/${params.brand}`
                     ),
             },
             {
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(
-                        `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/product/${params.brand}/${params.id}`
+                        `https://automotive-server-site-gamma.vercel.app/product/${params.brand}/${params.id}`
                     ),
             },
             {
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(
-                        `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/product/${params.brand}/${params.id}`
+                        `https://automotive-server-site-gamma.vercel.app/product/${params.brand}/${params.id}`
                     ),
             },
             {

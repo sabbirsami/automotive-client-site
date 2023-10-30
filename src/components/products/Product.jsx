@@ -5,6 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 
 function Product({ car }) {
+    console.log(car);
     return (
         <div className=" bg-[#302D3D] rounded-md">
             <div className="side-opacity h-64 rounded-t-md">

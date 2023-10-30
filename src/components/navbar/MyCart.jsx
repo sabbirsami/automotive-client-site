@@ -10,12 +10,9 @@ const MyCart = () => {
     const userData = data.filter((d) => d.userId === user.uid);
     console.log(userData);
     const handleCarDelete = (id) => {
-        fetch(
-            `https://automotive-server-site-7lheftcll-smd71430-gmailcom.vercel.app/cart/${id}`,
-            {
-                method: "DELETE",
-            }
-        )
+        fetch(`https://automotive-server-site-gamma.vercel.app/cart/${id}`, {
+            method: "DELETE",
+        })
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);
