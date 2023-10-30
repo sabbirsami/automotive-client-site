@@ -10,6 +10,8 @@ import PrivateRoute from "../components/auth/PrivateRoute";
 import MyCart from "../components/navbar/MyCart";
 import ErrorElement from "../components/shared/ErrorElement";
 import UpdateCar from "../components/dashboard/UpdateCar";
+import Dashboard from "../components/dashboard/Dashboard";
+import UserSection from "../components/dashboard/UserSection";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +23,7 @@ const router = createBrowserRouter([
                 path: "/",
                 element: <Home />,
             },
+
             {
                 path: "/cart",
                 element: (
@@ -80,6 +83,20 @@ const router = createBrowserRouter([
                         <AddCar />
                     </PrivateRoute>
                 ),
+            },
+        ],
+    },
+    {
+        path: "/dashboard",
+        element: (
+            <PrivateRoute>
+                <Dashboard />
+            </PrivateRoute>
+        ),
+        children: [
+            {
+                path: "/dashboard",
+                element: <UserSection />,
             },
         ],
     },

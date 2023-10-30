@@ -1,11 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { useState } from "react";
 import logo from "../../assets/logo.svg";
-import { useContext, useState } from "react";
 import { AuthContext } from "../auth/AuthProvider";
 import { SlMenu } from "react-icons/sl";
 import { RxCross1 } from "react-icons/rx";
+import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const DashboardNav = () => {
     const { user, signOutUser, setLight, light } = useContext(AuthContext);
     const [hide, setHide] = useState(false);
 
@@ -20,7 +21,7 @@ const Navbar = () => {
     };
     return (
         <div className={`${light ? "bg-white text-black" : "bg-[#1f1b2d]"}`}>
-            <div className="container-lg">
+            <div className="">
                 <div className="flex justify-between items-center py-5">
                     <div className="">
                         <img src={logo} alt="" />
@@ -36,25 +37,7 @@ const Navbar = () => {
                                     Home
                                 </NavLink>
                             </li>
-                            <li>
-                                <NavLink className=" p-4" to={"/add-car"}>
-                                    Add Car
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink className=" p-4" to={"/cart"}>
-                                    My Cart
-                                </NavLink>
-                            </li>
-                            {user ? (
-                                <li>
-                                    <NavLink className=" p-4" to={"/dashboard"}>
-                                        Dashboard
-                                    </NavLink>
-                                </li>
-                            ) : (
-                                ""
-                            )}
+
                             <li>
                                 <input
                                     type="checkbox"
@@ -199,4 +182,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default DashboardNav;
