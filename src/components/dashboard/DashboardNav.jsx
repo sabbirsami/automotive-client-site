@@ -4,7 +4,7 @@ import logo from "../../assets/logo.svg";
 import { AuthContext } from "../auth/AuthProvider";
 import { SlMenu } from "react-icons/sl";
 import { RxCross1 } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const DashboardNav = () => {
     const { user, signOutUser, setLight, light } = useContext(AuthContext);
@@ -21,10 +21,12 @@ const DashboardNav = () => {
     };
     return (
         <div className={`${light ? "bg-white text-black" : "bg-[#1f1b2d]"}`}>
-            <div className="">
+            <div className=" px-6">
                 <div className="flex justify-between items-center py-5">
                     <div className="">
-                        <img src={logo} alt="" />
+                        <Link to={"/"}>
+                            <img src={logo} alt="" />
+                        </Link>
                     </div>
                     <nav
                         className={`${

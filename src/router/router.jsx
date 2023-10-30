@@ -76,18 +76,10 @@ const router = createBrowserRouter([
                         `https://automotive-server-site-gamma.vercel.app/product/${params.brand}/${params.id}`
                     ),
             },
-            {
-                path: "/add-car",
-                element: (
-                    <PrivateRoute>
-                        <AddCar />
-                    </PrivateRoute>
-                ),
-            },
         ],
     },
     {
-        path: "/dashboard",
+        path: "/",
         element: (
             <PrivateRoute>
                 <Dashboard />
@@ -97,6 +89,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard",
                 element: <UserSection />,
+            },
+            {
+                path: "/dashboard/add-car",
+                element: <AddCar />,
             },
         ],
     },

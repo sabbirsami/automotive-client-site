@@ -36,11 +36,7 @@ const Navbar = () => {
                                     Home
                                 </NavLink>
                             </li>
-                            <li>
-                                <NavLink className=" p-4" to={"/add-car"}>
-                                    Add Car
-                                </NavLink>
-                            </li>
+
                             <li>
                                 <NavLink className=" p-4" to={"/cart"}>
                                     My Cart

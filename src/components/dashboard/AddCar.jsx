@@ -102,8 +102,8 @@ const AddCar = () => {
 
     return (
         <div className="container-lg">
-            <div className=" pb-32 pt-10">
-                <h2 className="text-2xl font-semibold py-6">Add Car</h2>
+            <div className=" pb-10">
+                <h2 className="text-2xl font-semibold pb-6">Add Car</h2>
                 <form className="" onSubmit={handleSubmit}>
                     <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-6">
                         <div className="pb-6">
