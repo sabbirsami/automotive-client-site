@@ -38,11 +38,20 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            const userEmail = currentUser?.email || user?.email;
+            const currentUserEmail = { email: userEmail };
             setUser(currentUser);
             if (currentUser) {
-                const currentUserEmail = { email: currentUser.email };
                 axios
                     .post("http://localhost:5000/jwt", currentUserEmail, {
+                        withCredentials: true,
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                    });
+            } else {
+                axios
+                    .post("http://localhost:5000/log-out", currentUserEmail, {
                         withCredentials: true,
                     })
                     .then((res) => {
@@ -54,7 +63,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             unSubscribe();
         };
-    }, []);
+    }, [user?.email]);
 
     const data = {
         signInWithGoogle,
