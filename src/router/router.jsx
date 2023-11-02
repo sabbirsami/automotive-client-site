@@ -32,10 +32,6 @@ const router = createBrowserRouter([
                         <MyCart />
                     </PrivateRoute>
                 ),
-                loader: () =>
-                    fetch(
-                        `https://automotive-server-site-gamma.vercel.app/cart/`
-                    ),
             },
             {
                 path: "/login",

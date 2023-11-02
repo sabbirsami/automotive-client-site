@@ -1,25 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../auth/AuthProvider";
 import toast from "react-hot-toast";
+import PropTypes from "prop-types";
 
-const MyCart = () => {
-    const { user } = useContext(AuthContext);
-    const [cartData, setCartData] = useState([]);
-    useEffect(() => {
-        fetch("http://localhost:5000/cart/", {
-            credentials: "include",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setCartData(data);
-            });
-    }, []);
-    console.log(user);
-
-    const userData = cartData.filter((d) => d.userId === user.uid);
-    console.log(userData);
+const ManageProduct = ({ cars }) => {
     const handleCarDelete = (id) => {
-        fetch(`https://automotive-server-site-gamma.vercel.app/cart/${id}`, {
+        fetch(`http://localhost:5000/product/${id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -62,7 +46,7 @@ const MyCart = () => {
     };
     return (
         <div className="container-lg pb-32 pt-10">
-            <h2 className="text-2xl font-semibold pb-16">My Cart</h2>
+            <h2 className="text-2xl font-semibold pb-16">Manage Product</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -84,7 +68,7 @@ const MyCart = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {userData.map((userCart) => (
+                        {cars.map((userCart) => (
                             <tr
                                 key={userCart._id}
                                 className="border-b border-white/30"
@@ -127,6 +111,11 @@ const MyCart = () => {
                                         delete
                                     </button>
                                 </th>
+                                <th>
+                                    <button className="btn btn-ghost btn-xs text-[#31fda8]">
+                                        update
+                                    </button>
+                                </th>
                             </tr>
                         ))}
                     </tbody>
@@ -136,4 +125,7 @@ const MyCart = () => {
     );
 };
 
-export default MyCart;
+export default ManageProduct;
+ManageProduct.propTypes = {
+    cars: PropTypes.object,
+};
