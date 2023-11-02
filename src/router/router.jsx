@@ -12,6 +12,7 @@ import ErrorElement from "../components/shared/ErrorElement";
 import UpdateCar from "../components/dashboard/UpdateCar";
 import Dashboard from "../components/dashboard/Dashboard";
 import UserSection from "../components/dashboard/UserSection";
+import ManageProducts from "../components/dashboard/ManageProducts";
 
 const router = createBrowserRouter([
     {
@@ -93,6 +94,14 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/add-car",
                 element: <AddCar />,
+            },
+            {
+                path: "/dashboard/manage-product/:brand",
+                element: <ManageProducts />,
+                loader: ({ params }) =>
+                    fetch(
+                        `https://automotive-server-site-gamma.vercel.app/product/${params.brand}`
+                    ),
             },
         ],
     },
