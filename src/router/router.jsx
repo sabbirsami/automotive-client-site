@@ -13,6 +13,7 @@ import UpdateCar from "../components/dashboard/UpdateCar";
 import Dashboard from "../components/dashboard/Dashboard";
 import UserSection from "../components/dashboard/UserSection";
 import ManageProducts from "../components/dashboard/ManageProducts";
+import Payment from "../components/payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
                     fetch(
                         `https://automotive-server-site-gamma.vercel.app/product/${params.brand}`
                     ),
+            },
+            {
+                path: "/pay/:car",
+                element: <Payment />,
             },
             {
                 path: "/product/:brand/:id",

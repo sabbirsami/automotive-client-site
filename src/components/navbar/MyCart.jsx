@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../auth/AuthProvider";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
     const { user } = useContext(AuthContext);
@@ -80,6 +81,7 @@ const MyCart = () => {
                             <th>Brand</th>
                             <th>Type</th>
                             <th>Price</th>
+                            <th>Pay</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,11 +120,19 @@ const MyCart = () => {
                                 <td>{userCart.type}</td>
                                 <th>${userCart?.price}</th>
                                 <th>
+                                    <Link
+                                        to={`/pay/${userCart._id}`}
+                                        className="btn btn-ghost btn-xs text-green-400 bg-green-800/30"
+                                    >
+                                        Pay
+                                    </Link>
+                                </th>
+                                <th>
                                     <button
                                         onClick={() =>
                                             handleCarDelete(userCart._id)
                                         }
-                                        className="btn btn-ghost btn-xs text-[#fd5631]"
+                                        className="btn btn-ghost btn-xs text-[#fd5631] bg-orange-800/30"
                                     >
                                         delete
                                     </button>
