@@ -17,7 +17,7 @@ const MyCart = () => {
     }, []);
     console.log(user);
 
-    const userData = cartData.filter((d) => d.userId === user.uid);
+    const userData = cartData?.filter((d) => d.userId === user.uid);
     console.log(userData);
     const handleCarDelete = (id) => {
         fetch(`https://automotive-server-site-gamma.vercel.app/cart/${id}`, {

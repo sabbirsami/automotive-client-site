@@ -1,9 +1,35 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
-const CheckoutForm = ({ props }) => {
+const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
+
+    const [err, setErr] = useState("");
+    // test
+    const price = 500;
+    const user = {
+        email: "smd71430@gmail.com",
+        name: "admin",
+    };
+
+    const [clientSecret, setClientSecret] = useState("");
+    console.log(clientSecret);
+
+    useEffect(() => {
+        // Create PaymentIntent as soon as the page loads
+        fetch(
+            "http://localhost:5000/create-payment-intent",
+
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ price }),
+            }
+        )
+            .then((res) => res.json())
+            .then((data) => setClientSecret(data.clientSecret));
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,6 +41,34 @@ const CheckoutForm = ({ props }) => {
         const card = elements.getElement(CardElement);
         if (card === null) {
             return;
+        }
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: "card",
+            card,
+        });
+
+        if (error) {
+            setErr(error.message);
+            console.log("[error]", error);
+        } else {
+            setErr("");
+            console.log("[PaymentMethod]", paymentMethod);
+        }
+        // confirm payment
+        const { paymentIntent, error: confirmError } =
+            await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        email: user.email,
+                        name: user.name,
+                    },
+                },
+            });
+        if (confirmError) {
+            console.log("confirm error", confirmError);
+        } else {
+            console.log("payment intent ", paymentIntent);
         }
     };
     return (
@@ -35,13 +89,16 @@ const CheckoutForm = ({ props }) => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe}>
+            <button
+                className="btn btn-primary btn-sm mt-5"
+                type="submit"
+                disabled={!stripe || !elements}
+            >
                 Pay
             </button>
+            <p className="text-red-600 text-xs">{err}</p>
         </form>
     );
 };
 
 export default CheckoutForm;
-
-CheckoutForm.propTypes = {};
