@@ -46,9 +46,7 @@ const router = createBrowserRouter([
                 path: "/product/:brand",
                 element: <Products />,
                 loader: ({ params }) =>
-                    fetch(
-                        `https://automotive-server-site-gamma.vercel.app/product/${params.brand}`
-                    ),
+                    fetch(`http://localhost:5000/product/${params.brand}`),
             },
             {
                 path: "/pay/:car",
@@ -63,7 +61,7 @@ const router = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(
-                        `https://automotive-server-site-gamma.vercel.app/product/${params.brand}/${params.id}`
+                        `http://localhost:5000/product/${params.brand}/${params.id}`
                     ),
             },
             {
@@ -75,7 +73,7 @@ const router = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(
-                        `https://automotive-server-site-gamma.vercel.app/product/${params.brand}/${params.id}`
+                        `http://localhost:5000/product/${params.brand}/${params.id}`
                     ),
             },
         ],
@@ -100,9 +98,7 @@ const router = createBrowserRouter([
                 path: "/dashboard/manage-product/:brand",
                 element: <ManageProducts />,
                 loader: ({ params }) =>
-                    fetch(
-                        `https://automotive-server-site-gamma.vercel.app/product/${params.brand}`
-                    ),
+                    fetch(`http://localhost:5000/product/${params.brand}`),
             },
         ],
     },

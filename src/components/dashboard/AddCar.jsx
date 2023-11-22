@@ -45,16 +45,13 @@ const AddCar = () => {
                         description,
                         rating,
                     };
-                    fetch(
-                        "https://automotive-server-site-gamma.vercel.app/cars",
-                        {
-                            method: "POST",
-                            headers: {
-                                "content-type": "application/json",
-                            },
-                            body: JSON.stringify(car),
-                        }
-                    )
+                    fetch("http://localhost:5000/cars", {
+                        method: "POST",
+                        headers: {
+                            "content-type": "application/json",
+                        },
+                        body: JSON.stringify(car),
+                    })
                         .then((res) => res.json())
                         .then((result) => {
                             console.log(result);

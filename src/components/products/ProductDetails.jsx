@@ -20,7 +20,7 @@ const ProductDetails = () => {
         const userEmail = user.email;
         const cartData = { name, type, img, brand, price, userId, userEmail };
         console.log(cartData);
-        fetch("https://automotive-server-site-gamma.vercel.app/cart", {
+        fetch("http://localhost:5000/cart", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

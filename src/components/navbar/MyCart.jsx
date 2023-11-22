@@ -2,25 +2,30 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../auth/AuthProvider";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import Loading from "../shared/Loading";
 
 const MyCart = () => {
     const { user } = useContext(AuthContext);
     const [cartData, setCartData] = useState([]);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
-        fetch("http://localhost:5000/cart/", {
-            credentials: "include",
-        })
+        setLoading(true);
+        fetch("http://localhost:5000/cart/")
             .then((res) => res.json())
             .then((data) => {
                 setCartData(data);
+                setLoading(false);
             });
     }, []);
+    if (loading) {
+        return <Loading />;
+    }
     console.log(user);
 
     const userData = cartData?.filter((d) => d.userId === user.uid);
     console.log(userData);
     const handleCarDelete = (id) => {
-        fetch(`https://automotive-server-site-gamma.vercel.app/cart/${id}`, {
+        fetch(`http://localhost:5000/cart/${id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -86,7 +91,7 @@ const MyCart = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {userData.map((userCart) => (
+                        {userData?.map((userCart) => (
                             <tr
                                 key={userCart._id}
                                 className="border-b border-white/30"

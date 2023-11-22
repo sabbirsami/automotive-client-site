@@ -35,16 +35,13 @@ const UpdateCar = () => {
         };
         console.log(updateCar);
 
-        fetch(
-            `https://automotive-server-site-gamma.vercel.app/product/${brand}/${_id}`,
-            {
-                method: "PUT",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(updateCar),
-            }
-        )
+        fetch(`http://localhost:5000/product/${brand}/${_id}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(updateCar),
+        })
             .then((res) => res.json())
             .then((result) => {
                 console.log(result);

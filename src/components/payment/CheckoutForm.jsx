@@ -6,6 +6,8 @@ const CheckoutForm = () => {
     const elements = useElements();
 
     const [err, setErr] = useState("");
+    const [transitionId, setTransitionId] = useState("");
+
     // test
     const price = 500;
     const user = {
@@ -18,17 +20,20 @@ const CheckoutForm = () => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch(
-            "http://localhost:5000/create-payment-intent",
 
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ price }),
-            }
-        )
-            .then((res) => res.json())
-            .then((data) => setClientSecret(data.clientSecret));
+        if (price > 0) {
+            fetch(
+                "http://localhost:5000/create-payment-intent",
+
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ price }),
+                }
+            )
+                .then((res) => res.json())
+                .then((data) => setClientSecret(data.clientSecret));
+        }
     }, []);
 
     const handleSubmit = async (e) => {
@@ -46,14 +51,6 @@ const CheckoutForm = () => {
             type: "card",
             card,
         });
-
-        if (error) {
-            setErr(error.message);
-            console.log("[error]", error);
-        } else {
-            setErr("");
-            console.log("[PaymentMethod]", paymentMethod);
-        }
         // confirm payment
         const { paymentIntent, error: confirmError } =
             await stripe.confirmCardPayment(clientSecret, {
@@ -65,6 +62,19 @@ const CheckoutForm = () => {
                     },
                 },
             });
+
+        if (error) {
+            setErr(error.message);
+            console.log("[error]", error);
+        } else {
+            setErr("");
+            console.log("[PaymentMethod]", paymentMethod);
+            if (paymentIntent.status === "succeeded") {
+                console.log("object");
+                setTransitionId(paymentIntent.id);
+            }
+        }
+
         if (confirmError) {
             console.log("confirm error", confirmError);
         } else {
@@ -97,6 +107,7 @@ const CheckoutForm = () => {
                 Pay
             </button>
             <p className="text-red-600 text-xs">{err}</p>
+            <p className="text-green-600 text-xs">{transitionId}</p>
         </form>
     );
 };
